@@ -1,0 +1,48 @@
+[gd_scene load_steps=6 format=3 uid="uid://bn5vipj1chhty"]
+
+[ext_resource type="Script" uid="uid://cvt7ay7jny30g" path="res://scripts/andgate.gd" id="1_57b3y"]
+[ext_resource type="Texture2D" uid="uid://di30feg2h8ysq" path="res://assets/andgate.png" id="1_scxuq"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dpxex"]
+radius = 3.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8iiws"]
+radius = 3.1622777
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_su3a4"]
+radius = 3.0
+
+[node name="AndGate" type="Node2D"]
+script = ExtResource("1_57b3y")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("1_scxuq")
+
+[node name="Button" type="Button" parent="Sprite2D"]
+modulate = Color(1, 1, 1, 0)
+offset_left = -73.33333
+offset_top = -83.33333
+offset_right = 50.0
+offset_bottom = 83.33333
+
+[node name="InputFirst" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InputFirst"]
+position = Vector2(-27, -11)
+shape = SubResource("CircleShape2D_dpxex")
+
+[node name="InputSecond" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InputSecond"]
+position = Vector2(-27, 12)
+shape = SubResource("CircleShape2D_8iiws")
+
+[node name="Output" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Output"]
+position = Vector2(21, 1)
+shape = SubResource("CircleShape2D_su3a4")
+
+[connection signal="button_down" from="Sprite2D/Button" to="." method="_on_button_button_down"]
+[connection signal="button_up" from="Sprite2D/Button" to="." method="_on_button_button_up"]
